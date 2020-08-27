@@ -1,0 +1,42 @@
+/**
+ * A CD does not allow deposit or withdrawal. You open the account with an
+ * initial deposit and then the money cannot be withdrawn until a certain amount
+ * if time does past An exception should be thrown ******
+ */
+
+public class CD extends Account {
+
+    private double rate = 0.0;
+
+    public CD(Currency initialAmount, double rate) {
+
+        super(initialAmount);
+        this.rate = rate;
+
+    }
+
+    @Override
+    public void deposit(Currency amount) {
+        ;
+    }
+
+    @Override
+    public void withdraw(Currency amount) {
+        ;
+    }
+
+    @Override
+    public Currency getBalance() {
+
+        double newCents = initAmount.getValue() * (1 + rate / 100);
+        return new Currency((int) Math.round(newCents));
+
+    }
+
+    // The interest rate is applied when the toString is called
+    @Override
+    public String toString() {
+        return getBalance().toString();
+    }
+
+}

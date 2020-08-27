@@ -1,0 +1,50 @@
+/**
+ * This this my main class. It extends the Menu class which has
+ * all the options it operates on.
+ */
+
+import java.util.Scanner;
+
+public class Main extends Menu {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        boolean Q = true;
+        // Q is my trailer
+        int n = 0;
+        // n will enable me to print the main menu only once
+
+        while (Q) {
+
+            if (n == 0) {
+                mainMenu();
+            }
+            String option = sc.next();
+
+            if (option.equals("O")) {
+                optionO();
+                n = 1;
+            } else if (option.equals("B")) {
+                optionB();
+                n = 1;
+            } else if (option.equals("W")) {
+                optionW();
+                n = 1;
+            } else if (option.equals("D")) {
+                optionD();
+                n = 1;
+            } else if (option.equals("Q")) {
+                optionQ();
+                Q = false;
+            } else {
+                System.out.println("Please, choose a valid option in the menu above!");
+                n = 1;
+            }
+
+        } // end while-loop
+
+    } // end main
+
+} // end Main

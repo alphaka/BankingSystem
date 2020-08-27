@@ -1,0 +1,16 @@
+// MaxAccountException class
+
+public class MaxAccountException extends Exception {
+
+    private String type;
+
+    public MaxAccountException(String type) {
+        super();
+        this.type = type;
+    }
+
+    public String getMessage() {
+        return "Sorry! We cannot allow you to possess two " + type + " accounts";
+    }
+
+}

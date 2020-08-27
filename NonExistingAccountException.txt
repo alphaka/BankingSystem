@@ -1,0 +1,16 @@
+// NonExistingAccountException    
+
+public class NonExistingAccountException extends Exception {
+
+    private String type;
+
+    public NonExistingAccountException(String type) {
+        super();
+        this.type = type;
+    }
+
+    public String getMessage() {
+        return "Sorry! You do not possess any " + type + " account. "
+                + "\nTherefore, you cannot perform this action.\n";
+    }
+}

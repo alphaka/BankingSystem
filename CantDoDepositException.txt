@@ -1,0 +1,16 @@
+// CantDoDepositException class
+
+public class CantDoDepositException extends Exception {
+
+    private String type;
+
+    public CantDoDepositException(String type) {
+        super();
+        this.type = type;
+    }
+
+    public String getMessage() {
+        return "Sorry! You cannot make a deposit on your " + type
+                + " account.\n";
+    }
+}

@@ -1,0 +1,51 @@
+/**
+ * The Currency class will have one member variable: the number of cents. A
+ * Currency object will be used to keep track of the money in a bank account.
+ */
+
+import java.text.DecimalFormat;
+
+public class Currency {
+
+    private int cents;
+
+    public Currency() {
+        cents = 0;
+    }
+
+    public Currency(int cents) {
+        this.cents = cents;
+    }
+
+    public int getValue() {
+        return cents;
+    }
+
+    public Currency add(Currency rhs) {
+        return new Currency(this.getValue() + rhs.getValue());
+    }
+
+    public Currency subtract(Currency rhs) {
+        return new Currency(this.getValue() - rhs.getValue());
+    }
+
+    private final DecimalFormat formatter = new DecimalFormat("#,###,###");
+    // My goal is to print 120321 cents as 1,203.21 $ nicely.
+    // 'formatter' will enable me to print the whole dollar part of a
+    // Currency object with commas.
+
+    @Override
+    public String toString() {
+        String amount = Integer.toString(cents);
+        String amount1 = amount.substring(0, amount.length() - 2);
+
+        int amount1int = Integer.parseInt(amount1);
+        //amount1int has amount1 in integer in order to be used by formatter
+
+        String amount2 = amount.substring(amount.length() - 2, amount.length());
+        //amount2 represents the cents part of a Currency object
+
+        return formatter.format(amount1int) + "." + amount2 + " $";
+    }
+
+} // end Currency.java

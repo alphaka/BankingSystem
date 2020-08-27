@@ -1,0 +1,252 @@
+/**
+ * The class Menu will guided a user through this program.
+ * This class has the following methods:
+ *  - mainMenu
+ *  - optionO
+ *  - optionW
+ *  - optionB
+ *  - optionD
+ *  - optionQ
+ *  - getIndex
+ */
+package currency;
+
+import java.util.Scanner;
+
+public class Menu {
+
+    private final static Scanner sc = new Scanner(System.in);
+    private static int j = 0;
+    // j will be used to add a new customer to the bank array
+
+    static Customer[] bank = new Customer[100];
+    // I assume bank has at maximum 100 customers
+
+    public static void mainMenu() {
+        
+	System.out.println("Welcome to Alpha Bank!\n"
+                + "Please, choose one of the following options:\n"
+                + "O - To Become a new customer of Alpha Bank\n"
+                + "B - To get the balance of one of your account(s)\n"
+                + "W - To withdraw money from one of your account(s)\n"
+                + "D - To make a deposit on one of your account(s)\n"
+                + "Q - To Exit this program");
+    }
+
+    public static void optionO() {
+        System.out.println("Enter your first name");
+        String first = sc.next();
+        System.out.println("Enter your last name");
+        String last = sc.next();
+
+        int indexCustomer = getIndex(first, last);
+
+        if (j == 0) {
+            bank[j] = new Customer(first, last);
+            j++;
+        } else {
+            if (indexCustomer != -1) {
+                System.out.println("You are already a customer of the bank.");
+            } else {
+                bank[j] = new Customer(first, last);
+                indexCustomer = j;
+                j++;
+            }
+        }
+
+        System.out.println("What type of account would you like to open?");
+        String type = sc.next();
+
+        try {
+            System.out.println("Enter an initial deposit in cents.");
+            int initial = sc.nextInt();
+            if(initial<0) {
+                    System.out.println("Sorry! Your initial deposit cannot"
+                            + " be less than 0 cents.\n"
+                            + "Choose an option from the main menu.");
+                    return;
+                }
+            
+            if (type.equals("Savings") || type.equals("savings")) {
+
+                System.out.println("Enter the interest rate of the bank.");
+                double rate = sc.nextDouble();
+                if(rate<0) {
+                    System.out.println("Sorry! The interest rate cannot be"
+                            + " less than 0%\n"
+                            + "Choose an option from the main menu.");
+                    return;
+                }
+                bank[indexCustomer].addAccount(new Savings(new Currency(initial), rate));
+                System.out.println("Congrats "+ first +"! Your " + type + 
+                        " account is all set.");
+
+            } else if (type.equals("CD") || type.equals("cd")) {
+
+                System.out.println("Enter the interest rate of the bank.");
+                double rate = sc.nextDouble();
+                if(rate<0) {
+                    System.out.println("Sorry! The interest rate cannot be"
+                            + " less than 0%\n"
+                            + "Choose an option from the main menu.");
+                    return;
+                }
+                bank[indexCustomer].addAccount(new CD(new Currency(initial), rate));
+                System.out.println("Congrats "+ first +"! Your " + type + 
+                        " account is all set.");
+
+            } else if (type.equals("Checking") || type.equals("checking")) {
+                bank[indexCustomer].addAccount(new Checking(new Currency(initial)));
+                System.out.println("Congrats "+ first +"! Your " + type + 
+                        " account is all set.");
+
+            } else {
+                System.out.println("Sorry! " + type + " is not an account type.");
+            }
+
+        } catch (MaxAccountException e) {
+            System.err.println(e.getMessage());
+        } catch (Exception e) {
+            System.err.println("Your input is invalid. Please, try again!");
+        }
+
+        System.out.println("Choose an option from the main menu to navigate"
+                + " Alpha Bank.");
+
+    } // end optionO
+
+    public static void optionB() {
+        System.out.println("Enter your first name");
+        String first = sc.next();
+        System.out.println("Enter your last name");
+        String last = sc.next();
+
+        int indexCustomer = getIndex(first, last);
+
+        if (indexCustomer == -1) {
+            System.out.println("Sorry! You are not a customer of the bank."
+                    + " Please open an account");
+        } else {
+            System.out.println("For what account do you want to get the balance for?");
+            String account = sc.next();
+            try {
+                System.out.println("Your balance is "
+                        + bank[indexCustomer].balance(account));
+            } catch (NonExistingAccountException e) {
+                System.err.println(e.getMessage());
+            } catch (Exception e) {
+                System.err.println("Your input is invalid. Please, try again!");
+            }
+        }
+
+        System.out.println("Choose an option from the main menu to navigate"
+                + " Alpha Bank.");
+
+    } // end optionB
+
+    public static void optionW() {
+        System.out.println("Enter your first name");
+        String first = sc.next();
+        System.out.println("Enter your last name");
+        String last = sc.next();
+
+        int indexCustomer = getIndex(first, last);
+
+        if (indexCustomer == -1) {
+            System.out.println("Sorry! You are not a cutomer of the bank."
+                    + "\nPlease, open an account.");
+        } else {
+            System.out.println("For what account do you want to withdraw from?");
+            String account = sc.next();
+            try {
+                System.out.println("Enter the amount to be withdrawn in cents");
+                int amount = sc.nextInt();
+
+                if(amount <0) {
+                    System.out.println("Sorry! You cannot withdraw an amount"
+                            + " less than 0 cents.\n"
+                            + "Choose an option from the main menu.");
+                    return;
+                }
+                
+                bank[indexCustomer].withdraw(new Currency(amount), account);
+                System.out.println("Your withdraw has been successfully made!");
+
+            } catch (CantDoWithdrawException e) {
+                System.err.println(e.getMessage());
+            } catch (NonExistingAccountException e) {
+                System.err.println(e.getMessage());
+            } catch (OverdrawnAccountException e) {
+                System.err.println(e.getMessage());
+            } catch (Exception e) {
+                System.err.println("Your input is invalid. Please, try again!");
+            }
+        }
+
+        System.out.println("Choose an option from the main menu to navigate"
+                + " Alpha Bank.");
+
+    } // end optionW
+
+    public static void optionD() {
+        System.out.println("Enter your first name");
+        String first = sc.next();
+        System.out.println("Enter your last name");
+        String last = sc.next();
+
+        int indexCustomer = getIndex(first, last);
+
+        if (indexCustomer == -1) {
+            System.out.println("Sorry! You are not a customer of the bank."
+                    + "\nPlease, open an account.");
+        } else {
+            System.out.println("For what account do you want to deposit to?");
+            String account = sc.next();
+            try {
+                System.out.println("Enter the amount to be deposited in cents");
+                int amount = sc.nextInt();
+
+                if(amount < 0) {
+                    System.out.println("Sorry! You cannot deposit an amount less"
+                            + " than 0 cents.\n"
+                            + "Choose an option from the main menu.");
+                    return;
+                }
+                
+                bank[indexCustomer].deposit(new Currency(amount), account);
+                System.out.println("Your deposit has been successfully made!");
+
+            } catch (CantDoDepositException e) {
+                System.err.println(e.getMessage());
+            } catch (NonExistingAccountException e) {
+                System.err.println(e.getMessage());
+            } catch (Exception e) {
+                System.err.println("Your input is invalid. Please, try again!");
+            }
+        }
+
+        System.out.println("Choose an option from the main menu to navigate"
+                + " Alpha Bank.");
+
+    } // end optionD
+
+    public static void optionQ() {
+        System.out.println("Thank you for trusting Alpha Bank!"
+                         + "\n        See you soon!");
+    }
+
+    //This method will get the index of a given customer 
+    public static int getIndex(String first, String last) {
+        if (j == 0) {
+            return 0;
+        }
+        for (int i = 0; i < j; i++) {
+            if (bank[i].getFirstName().equals(first)
+                    && bank[i].getLastName().equals(last)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+} // end Menu

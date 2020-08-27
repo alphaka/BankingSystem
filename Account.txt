@@ -1,0 +1,26 @@
+package currency;
+
+/**
+ * The Account class will have the following member variables: A Currency object
+ * that will store the balance of the account. The Account class will be an
+ * abstract class that will be subclassed by Checking, Savings, and CD
+ */
+public abstract class Account extends Currency {
+
+    protected Currency initAmount;
+
+    public Account(Currency initialDeposit) {
+        initAmount = initialDeposit;
+    }
+
+    abstract void withdraw(Currency money);
+    // Withdraws “money” cents from the account.
+
+    abstract void deposit(Currency money);
+    // Deposits “money” cents into the account.
+
+    abstract Currency getBalance();
+    // returns the balance in the account "unitAccount". For
+    // some accounts, we must take into account the interest rate.
+
+} // end Account.java

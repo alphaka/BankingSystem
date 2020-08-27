@@ -1,0 +1,197 @@
+run:
+Welcome to Alpha Bank!
+Please, choose one of the following options:
+O - To Become a new customer of Alpha Bank
+B - To get the balance of one of your account(s)
+W - To withdraw money from one of your account(s)
+D - To make a deposit on one of your account(s)
+Q - To Exit this program
+O
+Enter your first name
+Ari
+Enter your last name
+Langsam
+What type of account would you like to open?
+CD
+Enter an initial deposit in cents.
+150000
+Enter the interest rate of the bank.
+1.5
+Congrats Ari! Your CD account is all set.
+Choose an option from the main menu to navigate Alpha Bank.
+W
+Enter your first name
+Ari
+Enter your last name
+Mermelstein
+Sorry! You are not a customer of the bank.
+Please, open an account.
+Choose an option from the main menu to navigate Alpha Bank.
+W
+Enter your first name
+Ari
+Enter your last name
+Langsam
+For what account do you want to withdraw from?
+CD
+Enter the amount to be withdrawn in cents
+40000
+Choose an option from the main menu to navigate Alpha Bank.
+Sorry! You cannot withdraw from your CD account.
+
+O
+Enter your first name
+Ari
+Enter your last name
+Langsam
+You are already a customer of the bank.
+What type of account would you like to open?
+CD
+Enter an initial deposit in cents.
+50000
+Enter the interest rate of the bank.
+2.3
+Choose an option from the main menu to navigate Alpha Bank.
+Sorry! We cannot allow you to possess two CD accounts
+O
+Enter your first name
+Ari
+Enter your last name
+Langsam
+You are already a customer of the bank.
+What type of account would you like to open?
+Savings
+Enter an initial deposit in cents.
+1000000
+Enter the interest rate of the bank.
+5.0
+Congrats Ari! Your Savings account is all set.
+Choose an option from the main menu to navigate Alpha Bank.
+B
+Enter your first name
+Ari
+Enter your last name
+Langsam
+For what account do you want to get the balance for?
+Savings
+Your balance is 10,500.00 $
+Choose an option from the main menu to navigate Alpha Bank.
+B
+Enter your first name
+Ari
+Enter your last name
+Langsam
+For what account do you want to get the balance for?
+Checking
+Choose an option from the main menu to navigate Alpha Bank.
+Sorry! You do not possess any Checking account. 
+Therefore, you cannot perform this action.
+
+W
+Enter your first name
+Ari
+Enter your last name
+Langsam
+For what account do you want to withdraw from?
+Savings
+Enter the amount to be withdrawn in cents
+1100000
+Choose an option from the main menu to navigate Alpha Bank.
+Sorry! Your Savings account balance is less than 11,000.00 $. 
+As result, we cannot allow you to withdraw this amount.
+
+D
+Enter your first name
+Ari
+Enter your last name
+Langsam
+For what account do you want to deposit to?
+CD
+Enter the amount to be deposited in cents
+50000
+Choose an option from the main menu to navigate Alpha Bank.
+Sorry! You cannot make a deposit on your CD account.
+
+O
+Enter your first name
+Alpha
+Enter your last name
+Kaba
+What type of account would you like to open?
+Checking
+Enter an initial deposit in cents.
+120000
+Congrats Alpha! Your Checking account is all set.
+Choose an option from the main menu to navigate Alpha Bank.
+O
+Enter your first name
+Alpha
+Enter your last name
+Kaba
+You are already a customer of the bank.
+What type of account would you like to open?
+Savings
+Enter an initial deposit in cents.
+40000
+Enter the interest rate of the bank.
+1.2
+Congrats Alpha! Your Savings account is all set.
+Choose an option from the main menu to navigate Alpha Bank.
+O
+Enter your first name
+Alpha
+Enter your last name
+Kaba
+You are already a customer of the bank.
+What type of account would you like to open?
+Checking
+Enter an initial deposit in cents.
+32000
+Choose an option from the main menu to navigate Alpha Bank.
+Sorry! We cannot allow you to possess two Checking accounts
+D
+Enter your first name
+Alpha
+Enter your last name
+Kaba
+For what account do you want to deposit to?
+Checking
+Enter the amount to be deposited in cents
+20000
+Your deposit has been successfully made!
+Choose an option from the main menu to navigate Alpha Bank.
+W
+Enter your first name
+Alpha
+Enter your last name
+Kaba
+For what account do you want to withdraw from?
+Checking
+Enter the amount to be withdrawn in cents
+50000
+Your withdraw has been successfully made!
+Choose an option from the main menu to navigate Alpha Bank.
+B
+Enter your first name
+Alpha
+Enter your last name
+Kaba
+For what account do you want to get the balance for?
+CD
+Sorry! You do not possess any CD account. 
+Therefore, you cannot perform this action.
+Choose an option from the main menu to navigate Alpha Bank.
+
+B
+Enter your first name
+Alpha
+Enter your last name
+Kaba
+For what account do you want to get the balance for?
+Checking
+Your balance is 900.00 $
+Choose an option from the main menu to navigate Alpha Bank.
+Q
+Thank you for trusting Alpha Bank!
+         See you soon!
+BUILD SUCCESSFUL (total time: 9 minutes 16 seconds)

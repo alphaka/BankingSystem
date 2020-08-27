@@ -1,0 +1,45 @@
+/**
+ * A Savings account has an interest rate that gets applied when the balance is
+ * checked (let’s assume that the balance represents the amount after an
+ * interest period). You can withdraw and deposit money from a savings account.
+ */
+
+public class Savings extends Account {
+
+    private double rate = 0.0;
+
+    public Savings(Currency initial, double rate) {
+
+        super(initial);
+        this.rate = rate;
+
+    }
+
+    @Override
+    public void deposit(Currency amount) {
+        initAmount = initAmount.add(amount);
+    }
+
+    @Override
+    public void withdraw(Currency amount) {
+        initAmount = initAmount.subtract(amount);
+    }
+
+    // Remember: when getBalance() is called, the interest rate gets applied
+    
+    @Override
+    public Currency getBalance() {
+
+        double newCents = initAmount.getValue() * (1 + rate / 100);
+        return new Currency((int) Math.round(newCents));
+
+    }
+
+    // This toString returns the balance to date of a
+    // cutomer without the interest applied to it. 
+    @Override
+    public String toString() {
+        return initAmount.toString();
+    }
+
+} // end Savings.java

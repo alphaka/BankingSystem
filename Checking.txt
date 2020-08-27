@@ -1,0 +1,29 @@
+// A Checking account does not have an interest rate.
+
+public class Checking extends Account {
+
+    public Checking(Currency initialAmount) {
+        super(initialAmount);
+    }
+
+    @Override
+    public void deposit(Currency amount) {
+        initAmount = initAmount.add(amount);
+    }
+
+    @Override
+    public void withdraw(Currency amount) {
+        initAmount = initAmount.subtract(amount);
+    }
+
+    @Override
+    public Currency getBalance() {
+        return initAmount;
+    }
+
+    @Override
+    public String toString() {
+        return initAmount.toString();
+    }
+
+} // end Checking.java

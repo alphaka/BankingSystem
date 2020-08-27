@@ -1,0 +1,20 @@
+// OverdrawnAccountException class
+
+public class OverdrawnAccountException extends Exception {
+
+    private String type, amount;
+
+    public OverdrawnAccountException(String type, String amount) {
+
+        super();
+        this.type = type;
+        this.amount = amount;
+
+    }
+
+    public String getMessage() {
+        return "Sorry! Your " + type + " account balance is less than "
+                + amount + ". \nAs result, we cannot allow you to withdraw "
+                + "this amount.\n";
+    }
+}

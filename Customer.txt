@@ -1,0 +1,133 @@
+/**
+ * The Customer class will have 4 member variables: the first name of the
+ * customer, the last name of the customer, how many accounts the customer has
+ * actually opened, and an array of Accounts.
+ */
+
+public class Customer {
+
+    private String first, last;
+    private int numAccounts = 0;
+    private Account[] accounts = new Account[3];
+
+    public Customer(String first, String last) {
+
+        this.first = first;
+        this.last = last;
+
+    }
+
+    public String getFirstName() {
+        return first;
+    }
+
+    public String getLastName() {
+        return last;
+    }
+
+    // This function will allow the Customer to open an account. 
+    public void addAccount(Account account) throws MaxAccountException {
+
+        if (numAccounts == 0) {
+            accounts[0] = account;
+            numAccounts++;
+            return;
+        }
+
+        for (int i = 0; i < 3; i++) {
+            if (account instanceof Savings && accounts[i] instanceof Savings) {
+                throw new MaxAccountException("Savings");
+            }
+            if (account instanceof CD && accounts[i] instanceof CD) {
+                throw new MaxAccountException("CD");
+            }
+            if (account instanceof Checking && accounts[i] instanceof Checking) {
+                throw new MaxAccountException("Checking");
+            }
+        }
+
+        accounts[numAccounts] = account;
+        numAccounts++;
+
+    } // end addAccount
+
+    public void deposit(Currency money, String type) throws
+            CantDoDepositException, NonExistingAccountException {
+
+        for (int i = 0; i < 3; i++) {
+
+            if ((accounts[i] instanceof Savings) && type.equals("Savings")) {
+                accounts[i].deposit(money);
+                return;
+            }
+            if ((accounts[i] instanceof Checking) && type.equals("Checking")) {
+                accounts[i].deposit(money);
+                return;
+            }
+            if (accounts[i] instanceof CD && type.equals("CD")) {
+                throw new CantDoDepositException(type);
+            }
+
+        }
+
+        throw new NonExistingAccountException(type);
+
+    } // end deposit
+
+    public void withdraw(Currency money, String type) throws
+            CantDoWithdrawException, OverdrawnAccountException,
+            NonExistingAccountException {
+
+        for (int i = 0; i < 3; i++) {
+
+            if ((accounts[i] instanceof Savings) && type.equals("Savings")) {
+                accounts[i].withdraw(money);
+                if (accounts[i].getBalance().getValue() >= 0) {
+                    return;
+                } else {
+                    accounts[i].deposit(money);
+                    // we deposit the amount we withdrew as the balance is less than 0
+                    throw new OverdrawnAccountException(type, money.toString());
+                }
+            }
+            if ((accounts[i] instanceof Checking) && type.equals("Checking")) {
+                accounts[i].withdraw(money);
+                if (accounts[i].getBalance().getValue() >= 0) {
+                    return;
+                } else {
+                    accounts[i].deposit(money);
+                    throw new OverdrawnAccountException(type, money.toString());
+                }
+            }
+            if (accounts[i] instanceof CD && type.equals("CD")) {
+                throw new CantDoWithdrawException(type);
+            }
+
+        } // end for-loop
+
+        throw new NonExistingAccountException(type);
+
+    } // end withdraw
+
+    public String balance(String type) throws NonExistingAccountException {
+
+        for (int i = 0; i < 3; i++) {
+
+            if ((accounts[i] instanceof Savings) && type.equals("Savings")) {
+                return accounts[i].getBalance().toString();
+            }
+
+            if ((accounts[i] instanceof Checking) && type.equals("Checking")) {
+                return accounts[i].getBalance().toString();
+            }
+
+            if (accounts[i] instanceof CD && type.equals("CD")) {
+                return accounts[i].getBalance().toString();
+            }
+        }
+
+        throw new NonExistingAccountException(type);
+
+    } // end balance
+
+} // end Customer

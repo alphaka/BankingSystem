@@ -1,0 +1,15 @@
+// CantDoWithdrawException class
+
+public class CantDoWithdrawException extends Exception {
+
+    private String type;
+
+    public CantDoWithdrawException(String type) {
+        super();
+        this.type = type;
+    }
+
+    public String getMessage() {
+        return "Sorry! You cannot withdraw from your " + type + " account.\n";
+    }
+}
