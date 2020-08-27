@@ -1,3 +1,7 @@
+@Author: Alpha Kaba
+@Since: 07-16-2020
+@Version 1.0
+
 # BankingSystem
 Object-Oriented Banking System
 /**
